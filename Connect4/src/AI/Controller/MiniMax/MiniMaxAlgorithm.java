@@ -35,24 +35,28 @@ public class MiniMaxAlgorithm {
      * @param owner the current player
      * @return the best move
      */
-    public int getBestMove(ModelInterface field, List<IRatingMechanism> ratingMechanisms, Token owner) {
+    public int getBestMove(ModelInterface field, List<IRatingMechanism> ratingMechanisms, Token owner, Boolean minmax) {
         tree = new Tree(field, ratingMechanisms, owner);
+        int a = 5;
+         System.out.println(minmax);
         // minimize or maximize each level
         for (int i = Tree.MAXDEPTH - 1; i > 0; i--) {
-            //System.out.println("max/min level " + i);
+            System.out.println("max/min level " + i);
             List<Node> currLevel = tree.getLevel(i);
             if (!currLevel.isEmpty()) {
                 
                 if (currLevel.get(0).getCurrentOwner() == owner) {
-                    
+                    System.out.println("max");
                     for (Node node : currLevel) {
                         maximize(node);
+                       /// 
                     }
                     
                 } else {
-                    
+                     System.out.println("min");
                     for (Node node : currLevel) {
                         minimize(node);
+                       //
                     }
                 }
             }

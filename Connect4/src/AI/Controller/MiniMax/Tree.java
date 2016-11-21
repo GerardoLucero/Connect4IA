@@ -43,7 +43,7 @@ public class Tree {
     /**
      * generate a tree with the modell as the fundament.
      * For each possible move a child will be make until the depth has reached.
-     * All childs will be rating by the given ratingmechanism. Every level of
+     * All child will be rating by the given ratingmechanism. Every level of
      * the tree has the owner  obverse to the level before.
      * @param mf the gamefield
      * @param ratingMechanisms the ratingmechanism
@@ -74,7 +74,7 @@ public class Tree {
     }
     
     /**
-     * generates for all nodes childrens and rates the moves until
+     * generates for all nodes children and rates the moves until
      * the max depth is reached
      * @param depth the depth of the tree
      */

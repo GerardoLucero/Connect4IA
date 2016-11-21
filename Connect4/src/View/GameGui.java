@@ -183,12 +183,15 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     private void humanVsHumanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_humanVsHumanButtonActionPerformed
         ctrl.setIsP1Computer(false);
-        ctrl.setIsP2Computer(false);
+        ctrl.setIsP2Computer(true);////Porque aqui ahoa va a sr una computadora 
+        ctrl.minimax= false;
+        
     }//GEN-LAST:event_humanVsHumanButtonActionPerformed
 
     private void humanVsComButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_humanVsComButtonActionPerformed
         ctrl.setIsP1Computer(false);
         ctrl.setIsP2Computer(true);
+        ctrl.minimax= true;
     }//GEN-LAST:event_humanVsComButtonActionPerformed
 
     /**

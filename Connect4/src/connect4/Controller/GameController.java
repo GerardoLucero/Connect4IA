@@ -57,7 +57,7 @@ public class GameController implements Runnable {
     private int lastUpdatedRow;
     private AiCharacter com1Charakter;
     private AiCharacter com2Charakter;
-
+    public Boolean minimax;
     /**
      * instance a game controller for the game "4Gewinnt"
      */
@@ -65,6 +65,7 @@ public class GameController implements Runnable {
         lastUpdatedColumn = 0;
         lastUpdatedRow = 0;
         syncObject = new Object();
+        
         buff = new Buffer<MouseEvent>();
         this.gui = new GameGui(this, buff);
         gui.setVisible(true);
@@ -96,14 +97,15 @@ public class GameController implements Runnable {
 
             // make player one as human
         } else {
-            playerOne = new HumanPlayer(this, "Player one");
+            playerOne = new HumanPlayer(this, "Tú");
             playerOne.setColor(Token.BLUE);
         }
 
         // make player two as computer
         if (isP2Computer) {
             playerTwo = createComputerPlayer(com2Charakter);
-            playerTwo.setName("The intelligence Karl");
+            playerTwo.setName("IA Karlita");
+            playerTwo.setMinmax(minimax);
             playerTwo.setColor(Token.RED);
 
         } //make player two as human
@@ -149,10 +151,10 @@ public class GameController implements Runnable {
                 if (state != GameState.PLAYING) {
                     try {
                         if (state == GameState.DRAW) {
-                            gui.sendMessage("There are no winners");
+                            gui.sendMessage("EMPATE");
 
                         } else {
-                            gui.sendMessage("The winner is: " + currentPlayer.getName());
+                            gui.sendMessage("GANADOR: " + currentPlayer.getName());
                         }
 
                         synchronized (syncObject) {
@@ -166,7 +168,7 @@ public class GameController implements Runnable {
 
                 } else {
                     changePlayer();
-                    gui.sendMessage(currentPlayer.getName() + " has its turn");
+                    gui.sendMessage(currentPlayer.getName() + " :)");
                 }
 
                 gui.repaint();
@@ -267,6 +269,7 @@ public class GameController implements Runnable {
      */
     public void setIsP1Computer(boolean isP1Computer) {
         this.isP1Computer = isP1Computer;
+        
     }
 
     /**

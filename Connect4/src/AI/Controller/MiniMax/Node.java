@@ -84,8 +84,8 @@ public class Node {
     }
 
     /**
-     * returns a list of the node childs
-     * @return a list of the node childs
+     * returns a list of the node child
+     * @return a list of the node child
      */
     public List<Node> getChildren() {
         return children;

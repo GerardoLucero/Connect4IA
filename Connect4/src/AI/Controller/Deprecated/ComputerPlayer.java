@@ -77,6 +77,10 @@ public class ComputerPlayer implements MyPlayerInterface {
     public void setName(String name) {
         this.name = name;
     }
+    @Override
+    public void setMinmax(Boolean b)
+    {
+    }
 
     /**
      * resets the KI. This method is to call whenever the game is reset

@@ -84,6 +84,10 @@ public class HumanPlayer implements MyPlayerInterface {
     public void setName(String name) {
         this.name = name;
     }
+    @Override
+    public void setMinmax(Boolean b)
+    {
+    }
 
     @Override
     public boolean equals(Object obj) {

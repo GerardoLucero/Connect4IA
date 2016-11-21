@@ -32,6 +32,7 @@ import connect4.AI.Controller.MiniMax.MiniMaxAlgorithm;
 public abstract class ComputerPlayerMiniMax implements MyPlayerInterface {
 
     private Token color;
+    public Boolean minimax;
     private String name;
     private List<PossibleMove> possibleMoves;
     private List<IRatingMechanism> ratingMechanisms;
@@ -58,7 +59,12 @@ public abstract class ComputerPlayerMiniMax implements MyPlayerInterface {
     public Token getColor() {
         return color;
     }
-
+    @Override
+    public void setMinmax(Boolean minimaX)
+    {
+        minimax= minimaX;
+        
+    }
     @Override
     public String getName() {
         return name;
@@ -109,7 +115,8 @@ public abstract class ComputerPlayerMiniMax implements MyPlayerInterface {
     public int makeTurn(ModelInterface model) {
         resetAllRatings();
         MiniMaxAlgorithm mm = new MiniMaxAlgorithm();
-        return mm.getBestMove(model, ratingMechanisms, color);
+        
+        return mm.getBestMove(model, ratingMechanisms, color, minimax);
     }
 
     /**

@@ -53,6 +53,7 @@ public interface MyPlayerInterface extends PlayerInterface
         public String getName();
         
         public void setName(String name);
+        public void setMinmax(Boolean minimax);
 }
 
 

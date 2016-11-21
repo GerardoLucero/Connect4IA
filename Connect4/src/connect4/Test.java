@@ -93,7 +93,7 @@ public class Test {
         System.out.println(tree.toString());
 
         MiniMaxAlgorithm instance = new MiniMaxAlgorithm();
-        int result = instance.getBestMove(model, ratingMechanisms, blue);
+        int result = instance.getBestMove(model, ratingMechanisms, blue,false);
         System.out.println("" + result);
 
 
