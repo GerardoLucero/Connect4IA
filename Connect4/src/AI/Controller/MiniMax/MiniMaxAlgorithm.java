@@ -36,44 +36,73 @@ public class MiniMaxAlgorithm {
      * @return the best move
      */
     public int getBestMove(ModelInterface field, List<IRatingMechanism> ratingMechanisms, Token owner, Boolean minmax) {
-        tree = new Tree(field, ratingMechanisms, owner);
-        int a = 5;
-         System.out.println(minmax);
-        // minimize or maximize each level
-        for (int i = Tree.MAXDEPTH - 1; i > 0; i--) {
-            System.out.println("max/min level " + i);
-            List<Node> currLevel = tree.getLevel(i);
-            if (!currLevel.isEmpty()) {
-                
-                if (currLevel.get(0).getCurrentOwner() == owner) {
-                    System.out.println("max");
-                    for (Node node : currLevel) {
-                        maximize(node);
-                       /// 
-                    }
-                    
-                } else {
-                     System.out.println("min");
-                    for (Node node : currLevel) {
-                        minimize(node);
-                       //
+        if(minmax) {
+            tree = new Tree(field, ratingMechanisms, owner);
+            int a = 5;
+             System.out.println(minmax);
+            // minimize or maximize each level
+            for (int i = Tree.MAXDEPTH - 1; i > 0; i--) {
+                System.out.println("max/min level " + i);
+                List<Node> currLevel = tree.getLevel(i);
+                if (!currLevel.isEmpty()) {
+
+                    if (currLevel.get(0).getCurrentOwner() == owner) {
+                        System.out.println("max");
+                        for (Node node : currLevel) {
+                            maximize(node);
+                           /// 
+                        }
+
+                    } else {
+                         System.out.println("min");
+                        for (Node node : currLevel) {
+                            minimize(node);
+                           //
+                        }
                     }
                 }
             }
-        }
 
-        // debug
-        for (int i = 0; i < tree.getLevel(1).size(); i++) {
-            System.out.println(tree.getLevel(1).get(i).getMove().toString());
-        }
-
-        PossibleMove minMove = tree.getLevel(1).get(0).getMove();
-        for (int i = 0; i < tree.getLevel(1).size(); i++) {
-            if (tree.getLevel(1).get(i).getMove().getRating() < minMove.getRating()) {
-                minMove = tree.getLevel(1).get(i).getMove();
+            // debug
+            for (int i = 0; i < tree.getLevel(1).size(); i++) {
+                System.out.println(tree.getLevel(1).get(i).getMove().toString());
             }
+
+            PossibleMove minMove = tree.getLevel(1).get(0).getMove();
+            for (int i = 0; i < tree.getLevel(1).size(); i++) {
+                if (tree.getLevel(1).get(i).getMove().getRating() < minMove.getRating()) {
+                    minMove = tree.getLevel(1).get(i).getMove();
+                }
+            }
+            return minMove.getMove();
         }
-        return minMove.getMove();
+        else {
+            tree = new Tree(field, ratingMechanisms, owner);
+            // minimize or maximize each level
+            for (int i = Tree.MAXDEPTH - 1; i > 0; i--) {
+                //System.out.println("max/min level " + i);
+                List<Node> currLevel = tree.getLevel(i);
+                if (!currLevel.isEmpty()) {
+
+                    for (Node node : currLevel) {
+                        maximize(node);
+                    }
+                }
+            }
+
+            // debug
+            for (int i = 0; i < tree.getLevel(1).size(); i++) {
+                System.out.println(tree.getLevel(1).get(i).getMove().toString());
+            }
+
+            PossibleMove minMove = tree.getLevel(1).get(0).getMove();
+            for (int i = 0; i < tree.getLevel(1).size(); i++) {
+                if (tree.getLevel(1).get(i).getMove().getRating() < minMove.getRating()) {
+                    minMove = tree.getLevel(1).get(i).getMove();
+                }
+            }
+            return minMove.getMove();
+       }
     }
     
     /**
